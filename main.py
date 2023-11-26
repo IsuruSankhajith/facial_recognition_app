@@ -3,6 +3,7 @@ import cv2
 import face_recognition
 import pickle
 import numpy as np
+import cvzone
 
 cap = cv2.VideoCapture(1)
 cap.set(3, 1280)
@@ -46,7 +47,8 @@ while True:
         if matches[matchIndex]:
             y1, x2, y2, x1 = faceLoc
             y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
-            
+            bbox = (55 + x1, 162 + y1, 162 + x2, 162 + y2)
+            imgBackground = cvzone.cornerRect(imgBackground, bbox, rt=0)
 
     cv2.imshow("Face Attendance", img)
     cv2.imshow("Face Attendance with Background", imgBackground)

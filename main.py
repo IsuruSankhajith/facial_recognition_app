@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import os
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import cv2
+cap = cv2.videoCapture(1)
+cap.set(3, 1280)
+cap.set(4, 720)
 
+imgBackground = cv2.imread('Resources/background.png')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+folderModePath = 'Resourece/Modes'
+modepathList = os.listdir(folderModePath)
+while True:
+    success, img = cap.rad()
 
+    imgBackground[162:162+480, 55:55+640] = img
+    imgBackground[44:162 + 480, 55:55 + 640] = imgModeList[0]
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    cv2.imshow("Face Attendance ", img)
+    cv2.imshow("Face Attendance ", imgBackground)
+    cv2.waitKey(1)
